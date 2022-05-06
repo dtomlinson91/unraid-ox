@@ -20,7 +20,7 @@ steps:
   - name: checkout tag
     image: alpine/git
     commands:
-      - cd dust
+      - cd ox
       - git fetch --all --tags
       - git checkout tags/${DRONE_TAG}
     depends_on:
@@ -28,7 +28,7 @@ steps:
   - name: cargo build
     image: rust:latest
     commands:
-      - cd dust
+      - cd ox
       - cargo build --release --target x86_64-unknown-linux-gnu
       - cd target/x86_64-unknown-linux-gnu/release
     depends_on:
@@ -37,17 +37,17 @@ steps:
     image: vbatts/slackware:14.2
     commands:
       - mkdir -p dist/usr/sbin
-      - cp dust/target/x86_64-unknown-linux-gnu/release/dust ./dist/usr/sbin/dust
+      - cp ox/target/x86_64-unknown-linux-gnu/release/ox ./dist/usr/sbin/ox
       - cp -R ./usr ./dist
-      - chmod +x ./dist/usr/sbin/dust
+      - chmod +x ./dist/usr/sbin/ox
       - cd dist
-      - makepkg -l y -c y ../unraid-dust-${DRONE_TAG}.txz
+      - makepkg -l y -c y ../unraid-ox-${DRONE_TAG}.txz
     depends_on:
       - "cargo build"
   - name: prepare release
     image: vbatts/slackware:14.2
     commands:
-      - echo "dust ${DRONE_TAG} - built@$(date '+%FT%TZ') [Drone ${DRONE_SYSTEM_VERSION}]" > ./release_note
+      - echo "ox ${DRONE_TAG} - built@$(date '+%FT%TZ') [Drone ${DRONE_SYSTEM_VERSION}]" > ./release_note
       - cat ./release_note
     depends_on:
       - "build slackware package"
@@ -58,7 +58,7 @@ steps:
         from_secret: GITEA_KEY
       base_url: https://git.panaetius.co.uk
       files:
-        - ./unraid-dust-${DRONE_TAG}.txz
+        - ./unraid-ox-${DRONE_TAG}.txz
       checksum:
         - md5
       title: ${DRONE_TAG}
@@ -74,7 +74,7 @@ steps:
       api_key:
         from_secret: GITHUB_KEY
       files:
-        - ./unraid-dust-${DRONE_TAG}.txz
+        - ./unraid-ox-${DRONE_TAG}.txz
       checksum:
         - md5
       title: ${DRONE_TAG}
