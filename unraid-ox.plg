@@ -1,9 +1,9 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
-  <!ENTITY name       "unraid-dust">
+  <!ENTITY name       "unraid-ox">
   <!ENTITY author     "dtomlinson">
   <!ENTITY org        "dtomlinson91">
-  <!ENTITY version    "v0.8.0">
+  <!ENTITY version    "0.2.7">
   <!ENTITY gitURL     "https://github.com/&org;/&name;">
   <!ENTITY pluginURL  "&gitURL;/raw/master/&name;.plg">
   <!ENTITY releaseURL "&gitURL;/releases/download/&version;/&name;-&version;.txz">
@@ -17,7 +17,7 @@
 
 ### 2022-05-06
 
-- Initial release - dust v0.8.0
+- Initial release - ox 0.2.7
 
 </CHANGES>
 
@@ -55,7 +55,7 @@ For more information see the [ox repository](https://github.com/curlpipe/ox).
 
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
-echo "*** Removing dust ***"
+echo "*** Removing ox ***"
 
 # Remove plugin related files
 removepkg &name;-&version;
@@ -64,7 +64,7 @@ rm -rf &emhttp;
 rm -rf &plugin;
 
 echo
-echo "*** Successfully removed dust ***"
+echo "*** Successfully removed ox ***"
 </INLINE>
 </FILE>
 </PLUGIN>
