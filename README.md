@@ -1,14 +1,19 @@
-# ox
+# unraid-ox
 
-This is the repository for the unraid ox plugin.
+An Unraid plugin that installs ox ([upstream](https://github.com/curlpipe/ox)).
 
-<img src="https://git.panaetius.co.uk/dtomlinson91/unraid-ox/raw/branch/main/assets/unraid-ox.png"/>
+## Install
 
-Ox is a code editor that runs in your terminal.
+In the Unraid web UI, go to **Plugins > Install Plugin** and paste this URL:
 
-For more information see the [ox repository](https://github.com/curlpipe/ox).
-## dev
+```
+https://github.com/dtomlinson91/unraid-ox/raw/main/unraid-ox.plg
+```
 
-Drone builds the plugin source using cargo on a new tag creation.
+## Release
 
-Tag versions follow ox releases.
+The `release` workflow uses the shared workflow in [unraid-plugin-template](https://github.com/dtomlinson91/unraid-plugin-template).
+It runs every Monday, and it releases a new plugin version when upstream has a new release.
+To release by hand, run the workflow from the **Actions** tab.
+
+The plugin settings are in `plugin.conf`. The text for the Unraid Plugins page is in `description.md`.
